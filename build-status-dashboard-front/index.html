@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACPrompt Status</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1117;color:#e0e0e0;min-height:100vh}
+header{background:#161b22;border-bottom:1px solid #21262d;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:1.25rem;font-weight:600;color:#58a6ff}
+#refresh-info{font-size:.75rem;color:#8b949e}
+main{max-width:960px;margin:2rem auto;padding:0 1rem}
+section{margin-bottom:2rem}
+h2{font-size:1rem;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-bottom:1rem}
+.services{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.service-card{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:1.25rem;display:flex;justify-content:space-between;align-items:center}
+.service-name{font-weight:600;font-size:.95rem}
+.uptime-bar{margin-top:.5rem;height:6px;border-radius:3px;background:#21262d;overflow:hidden;width:100%}
+.uptime-fill{height:100%;border-radius:3px;transition:width .6s}
+.status-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-left:1rem}
+.status-dot.operational{background:#3fb950;box-shadow:0 0 6px #3fb95055}
+.status-dot.degraded{background:#d29922;box-shadow:0 0 6px #d2992266}
+.status-dot.down{background:#f85149;box-shadow:0 0 6px #f8514966}
+.uptime-pct{font-size:.8rem;color:#8b949e;margin-top:.35rem}
+.incident{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:1rem 1.25rem;margin-bottom:.75rem}
+.incident-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.incident-title{font-weight:600;font-size:.9rem}
+.incident-badge{font-size:.7rem;padding:2px 8px;border-radius:12px;font-weight:600;text-transform:uppercase}
+.badge-active{background:#f8514922;color:#f85149}
+.badge-monitoring{background:#d2992222;color:#d29922}
+.badge-resolved{background:#3fb95022;color:#3fb950}
+.incident-time{font-size:.75rem;color:#8b949e;margin-bottom:.35rem}
+.incident-body{font-size:.85rem;color:#c9d1d9;line-height:1.5}
+.timeline{position:relative;padding-left:1.5rem;border-left:2px solid #21262d}
+.timeline-event{position:relative;margin-bottom:1.25rem}
+.timeline-event::before{content:'';position:absolute;left:-1.75rem;top:4px;width:10px;height:10px;border-radius:50%;background:#58a6ff;border:2px solid #0f1117}
+.timeline-event.resolved::before{background:#3fb950}
+.timeline-time{font-size:.7rem;color:#8b949e}
+.timeline-text{font-size:.85rem;color:#c9d1d9;margin-top:2px}
+.empty-state{color:#8b949e;font-size:.85rem;padding:1rem 0}
+@media(max-width:600px){header{flex-direction:column;gap:.5rem;align-items:flex-start}.services{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚡ ACPrompt Status</h1>
+  <span id="refresh-info">Last updated: —</span>
+</header>
+<main>
+  <section>
+    <h2>Service Health</h2>
+    <div id="services" class="services"><div class="empty-state">Loading…</div></div>
+  </section>
+  <section>
+    <h2>Active Incidents</h2>
+    <div id="active-incidents"><div class="empty-state">Loading…</div></div>
+  </section>
+  <section>
+    <h2>Incident History</h2>
+    <div id="incident-history" class="timeline"><div class="empty-state">Loading…</div></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
